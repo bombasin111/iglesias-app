@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'  # 🔑 Contraseña temporal
+      MYSQL_DATABASE: iglesias_localidad
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'  # ⚠️ Importante!
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:  # 👨⚕️ Para verificar estado
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  db_data:
