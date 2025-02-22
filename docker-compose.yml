@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
+      DB_HOST: dpg-cusmradumphs73c9grc0-a.oregon-postgres.render.com
       DB_NAME: iglesias_localidad
       DB_USER: feligres_admin
       DB_PASSWORD: dIEUWItATBdYAIgx8kgyNCuNyzUJggHm
