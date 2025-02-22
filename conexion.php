@@ -1,20 +1,15 @@
 <?php
-// conexion.php
-$host = 'localhost';
-$dbname = 'iglesias_localidad';
-$user = 'root';     // Usuario de MySQL (por defecto en XAMPP)
-$password = '';     // Contraseña de MySQL (vacío por defecto en XAMPP)
+$host = getenv('DB_HOST'); // Host de Render
+$db   = getenv('DB_NAME'); // iglesias_localidad
+$user = getenv('DB_USER'); // feligres_admin
+$pass = getenv('DB_PASSWORD'); // La contraseña de Render
+
+$dsn = "pgsql:host=$host;dbname=$db;sslmode=require";
 
 try {
-    $conexion = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
-        $user,
-        $password,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
+    $conn = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
 } catch (PDOException $e) {
     die("Error de conexión: " . $e->getMessage());
 }

@@ -1,3 +1,4 @@
+
 services:
   app:
     build: .
@@ -7,22 +8,22 @@ services:
       - .:/var/www/html
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      DB_NAME: iglesias_localidad
+      DB_USER: feligres_admin
+      DB_PASSWORD: dIEUWItATBdYAIgx8kgyNCuNyzUJggHm
 
   db:
-    image: mysql:8.0
+    image: postgres:15
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'  # 🔑 Contraseña temporal
-      MYSQL_DATABASE: iglesias_localidad
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'  # ⚠️ Importante!
+      POSTGRES_USER: feligres_admin
+      POSTGRES_PASSWORD: dIEUWItATBdYAIgx8kgyNCuNyzUJggHm
+      POSTGRES_DB: iglesias_localidad
     ports:
-      - "3307:3306"
+      - "5432:5432"
     volumes:
-      - db_data:/var/lib/mysql
-    healthcheck:  # 👨⚕️ Para verificar estado
-      test: ["CMD-SHELL", "mysqladmin ping -uroot -p$${MYSQL_ROOT_PASSWORD}"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
+      - pg_data:/var/lib/postgresql/data
 
 volumes:
-  db_data:
+  pg_data:
