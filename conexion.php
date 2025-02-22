@@ -1,8 +1,8 @@
 <?php
-$host = getenv('DB_HOST'); // Host de Render
-$db   = getenv('DB_NAME'); // iglesias_localidad
-$user = getenv('DB_USER'); // feligres_admin
-$pass = getenv('DB_PASSWORD'); // La contraseña de Render
+$host = "dpg-cusmradumphs73c9grc0-a.oregon-postgres.render.com"; // DB_HOST completo
+$db   = "iglesias_localidad"; // Nombre de la base de datos
+$user = "feligres_admin"; // Usuario
+$pass = "dIEUWItATBdYAIgx8kgyNCuNyzUJggHm"; // Contraseña que te dio Render
 
 $dsn = "pgsql:host=$host;dbname=$db;sslmode=require";
 
