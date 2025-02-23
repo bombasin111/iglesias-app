@@ -2,12 +2,12 @@
 $host = "dpg-cusmradumphs73c9grc0-a.oregon-postgres.render.com"; // DB_HOST completo
 $db   = "iglesias_localidad"; // Nombre de la base de datos
 $user = "feligres_admin"; // Usuario
-$pass = "dIEUWItATBdYAIgx8kgyNCuNyzUJggHm"; // Contraseña que te dio Render
+$pass = "dIEUWItATBdYAIgx8kgyNCuNyzUJggHm"; // Contraseña de Render
 
 $dsn = "pgsql:host=$host;dbname=$db;user=$user;password=$pass;sslmode=require";
 
 try {
-    $conn = new PDO($dsn, $user, $db, [
+    $conexion = new PDO($dsn, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 } catch (PDOException $e) {
