@@ -4,10 +4,10 @@ $db   = "iglesias_localidad"; // Nombre de la base de datos
 $user = "feligres_admin"; // Usuario
 $pass = "dIEUWItATBdYAIgx8kgyNCuNyzUJggHm"; // Contraseña que te dio Render
 
-$dsn = "pgsql:host=$host;dbname=$db;sslmode=require";
+$dsn = "pgsql:host=$host;dbname=$db;user=$user;password=$pass;sslmode=require";
 
 try {
-    $conn = new PDO($dsn, $user, $pass, [
+    $conn = new PDO($dsn, $user, $db, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 } catch (PDOException $e) {
