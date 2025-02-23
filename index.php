@@ -9,8 +9,17 @@ if (isset($_SESSION['id_iglesia'])) {
 }
 
 // Obtener lista de iglesias desde la base de datos
-$query = $conexion->query("SELECT id, nombre FROM iglesias");
-$iglesias = $query->fetchAll();
+try {
+    $query = $conexion->query("SELECT id, nombre FROM iglesias");
+    $iglesias = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // Depuración: Verificar datos obtenidos
+    echo "<pre>";
+    print_r($iglesias);
+    echo "</pre>";
+} catch (PDOException $e) {
+    die("Error en la consulta: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
