@@ -19,7 +19,7 @@ if (isset($_GET['buscar'])) {
         SELECT f.nombre, f.ci, f.fecha_nacimiento, f.bautizo, f.confirmacion, f.matrimonio, i.nombre AS iglesia
         FROM feligreses f
         JOIN iglesias i ON f.id_iglesia = i.id
-        WHERE f.nombre LIKE ? OR f.ci LIKE ?
+        WHERE f.nombre ILIKE ? OR f.ci LIKE ?
     ");
     $query->execute([$busqueda, $busqueda]); // Pasamos el valor dos veces (para nombre y CI)
     $resultados = $query->fetchAll();
